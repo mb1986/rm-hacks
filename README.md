@@ -23,14 +23,14 @@ software's licensing requirements when using these patches.
 
 ## Installation
 
-For your convenience, we've provided an 'automagic' script for installation.
+For your convenience, we've provided an automated installation script for installation.
 
 1. Connect to your rM device via SSH.
-2. Paste the 'automagic' command, then press Enter.
+2. Paste the below command, then press Enter.
 3. Follow the on-screen instructions.
 
 ```shell
-(automagic will be provided soon, stay tuned!)
+(installation command will be provided soon, stay tuned!)
 ```
 
 ## Patches
