@@ -23,7 +23,7 @@ software's licensing requirements when using these patches.
 
 ## Installation
 
-For your convenience, we've provided an automated installation script for installation.
+For your convenience, we've provided an automated installation script.
 
 1. Connect to your rM device via SSH.
 2. Paste the below command, then press Enter.
