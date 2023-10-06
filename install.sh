@@ -28,9 +28,6 @@ pass=$(sha256sum $APP_BINARY | head -c64)
 
 wget -O- $PATCH_URL$patch_version.patch | openssl aes-256-cbc -d -a -md sha512 -pbkdf2 -iter 1000000 -salt -pass pass:$pass | tar --overwrite -xjC $CACHE_DIR
 
-COLOR='\e[1;33m'
-NOCOLOR='\e[0m'
-
 echo "The patch should be already in place :)"
 echo -e "${COLOR_YELLOW}Please restart your device to see effects...${NOCOLOR}"
 echo "Have fun, until next time, bye!"
