@@ -9,6 +9,17 @@ APP_BINARY="/usr/bin/xochitl"
 CACHE_DIR="/home/root/.cache/remarkable/xochitl/qmlcache/"
 PATCH_URL="https://raw.githubusercontent.com/mb1986/rm-hacks/main/patches/"
 
+if [ $0 = "uninstall"]; then
+
+    rm -rf "$CACHE_DIR*"
+
+    echo "The patch should be uninstalled now..."
+    echo -e "${COLOR_YELLOW}Please restart your device to see effects...${NOCOLOR}"
+    echo "Have fun, until next time, bye!"
+
+    exit 0
+fi
+
 hash=$(sha1sum $APP_BINARY | cut -c1-40)
 case $hash in
     "143aa1d2f25affbd9ee437bc1418d6f1d577b125")
