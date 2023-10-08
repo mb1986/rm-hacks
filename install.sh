@@ -11,7 +11,7 @@ PATCH_URL="https://raw.githubusercontent.com/mb1986/rm-hacks/main/patches/"
 
 if [ "$0" = "uninstall" ]; then
 
-    rm -rf "$CACHE_DIR*"
+    rm -rf "${CACHE_DIR}*"
 
     echo "The patch should be uninstalled now..."
     echo -e "${COLOR_YELLOW}Please restart your device to see effects...${NOCOLOR}"
