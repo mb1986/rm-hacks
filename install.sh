@@ -9,7 +9,7 @@ APP_BINARY="/usr/bin/xochitl"
 CACHE_DIR="/home/root/.cache/remarkable/xochitl/qmlcache/"
 PATCH_URL="https://raw.githubusercontent.com/mb1986/rm-hacks/main/patches/"
 
-if [ $0 = "uninstall" ]; then
+if [ "$0" = "uninstall" ]; then
 
     rm -rf "$CACHE_DIR*"
 
