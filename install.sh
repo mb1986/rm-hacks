@@ -9,7 +9,7 @@ APP_BINARY="/usr/bin/xochitl"
 CACHE_DIR="/home/root/.cache/remarkable/xochitl/qmlcache/"
 PATCH_URL="https://raw.githubusercontent.com/mb1986/rm-hacks/main/patches/"
 
-hash=$(sha1sum $APP_BINARY | head -c40)
+hash=$(sha1sum $APP_BINARY | cut -c1-40)
 case $hash in
     "143aa1d2f25affbd9ee437bc1418d6f1d577b125")
         patch_version="0.0.1"
@@ -24,7 +24,7 @@ case $hash in
 esac
 
 echo -e "${COLOR_GREEN}Patch $patch_version found - downloading and installing :)${NOCOLOR}"
-pass=$(sha256sum $APP_BINARY | head -c64)
+pass=$(sha256sum $APP_BINARY | cut -c1-64)
 
 wget -O- $PATCH_URL/${patch_version}_$hash.patch | openssl aes-256-cbc -d -a -md sha512 -pbkdf2 -iter 1000000 -salt -pass pass:$pass | tar --overwrite -xjC $CACHE_DIR
 
