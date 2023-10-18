@@ -49,7 +49,7 @@ sh -c "$(wget https://raw.githubusercontent.com/mb1986/rm-hacks/main/install.sh 
 ### Version 0.0.1
 
 Our first patch, a pilot and proof of concept, is designed to bring back some
-popular features for devices updated to version 3.6.1.1894.
+popular features for devices updated to version 3.x.
 
 If you're still using a device with version 2.x, you might prefer using
 [ddvk's Binary Patches](https://github.com/ddvk/remarkable-hacks).
