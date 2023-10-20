@@ -69,6 +69,6 @@ This patch includes the following changes:
 
 - The Lamy Pen button now works for erasing (only erasing for now).
   To use this feature, install
-  [ddvk's Qt Plugin for Lamy Pen](https://github.com/ddvk/remarkable-stylus) first.
+  [ddvk's Qt Plugin for Lamy Pen](https://github.com/ddvk/remarkable-stylus) first. You will not need to install ddvk-hacks like it recommends, as this replaces that dependency.
 - The toolbar icon changes from the default open icon to a brush icon.
 - The close icon (x) in the top right corner has been removed.
