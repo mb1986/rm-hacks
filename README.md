@@ -46,6 +46,12 @@ sh -c "$(wget https://raw.githubusercontent.com/mb1986/rm-hacks/main/install.sh 
 
 ## Patches
 
+### Version 0.0.2
+
+This patch includes all the hacks from the previous one, along with the following:
+
+- New notebook name defaults to the current date and time (format: `yyyy-mm-dd_hhmmss`).
+
 ### Version 0.0.1
 
 Our first patch, a pilot and proof of concept, is designed to bring back some

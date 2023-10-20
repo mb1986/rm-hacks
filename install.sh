@@ -29,10 +29,10 @@ case $hash in
         patch_version="0.0.1"
         ;;
     "ae0d21c258c0f3d93717d9bd23eb74b68ac438db")
-        patch_version="0.0.1"
+        patch_version="0.0.2"
         ;;
     "4d066636ed653ffe59d4bc3acf55aa6cef72d795")
-        patch_version="0.0.1"
+        patch_version="0.0.2"
         ;;
     *)
         echo -e "${COLOR_RED}No suitable patch found for your version :(${NOCOLOR}"
