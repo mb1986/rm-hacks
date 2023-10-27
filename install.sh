@@ -9,6 +9,7 @@ NOCOLOR='\e[0m'
 APP_BINARY="/usr/bin/xochitl"
 CACHE_DIR="/home/root/.cache/remarkable/xochitl/qmlcache/"
 PATCH_URL="https://raw.githubusercontent.com/mb1986/rm-hacks/main/patches/"
+ZONEINFO_DIR="/usr/share/zoneinfo/"
 
 
 uninstall () {
@@ -89,9 +90,17 @@ set_timezone () {
     set -e
     if [ "$resp" -eq "0" ]; then
 
+        all_timezones=$(timedatectl list-timezones)
+        timezones=""
+        for timezone in $all_timezones; do
+            if [ -f "${ZONEINFO_DIR}${timezone}" ]; then
+                timezones="$timezones $timezone"
+            fi
+        done
+
         echo "Possible timezones are:"
         echo "-----------------------------------------------------------------------------------------------------------------------------------------------------------"
-        timedatectl list-timezones | xargs -n5 | awk '{printf "%-30s %-30s %-30s %-30s %-30s\n",$1,$2,$3,$4,$5 }'
+        echo -n $timezones | xargs -n5 | awk '{printf "%-30s %-30s %-30s %-30s %-30s\n",$1,$2,$3,$4,$5 }'
         echo "-----------------------------------------------------------------------------------------------------------------------------------------------------------"
 
         echo -ne "${COLOR_BLUE}"
