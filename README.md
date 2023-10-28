@@ -48,9 +48,18 @@ sh -c "$(wget https://raw.githubusercontent.com/mb1986/rm-hacks/main/install.sh 
 
 | Version |    3.7.0.1930    |    3.6.1.1894    |
 |  :---:  |       :---:      |       :---:      |
+|**0.0.4**|:white_check_mark:|        :x:       |
 |**0.0.3**|:white_check_mark:|        :x:       |
 |**0.0.2**|:white_check_mark:|        :x:       |
 |**0.0.1**|:white_check_mark:|:white_check_mark:|
+
+### Version 0.0.4
+
+This patch includes all the hacks from the previous one, along with the following:
+
+- Additional stroke sizes (0.5, 1, 1.5, 2, 3, 5, 8, 13).
+- Gesture to switch between the last two tools: swipe one finger down in the top left corner.
+- Gesture to switch between the writing tool and eraser: swipe one finger up in the top left corner.
 
 ### Version 0.0.3
 
