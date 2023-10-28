@@ -15,8 +15,9 @@ ZONEINFO_DIR="/usr/share/zoneinfo/"
 uninstall () {
     rm -rf ${CACHE_DIR}*
 
-    rm -rf /etc/systemd/system/xochitl.service.d
-    rm /usr/lib/plugins/generic/libqevdevlamyplugin.so || true
+    rm /etc/systemd/system/xochitl.service.d/evdevlamy.conf 2>/dev/null || true
+    rmdir /etc/systemd/system/xochitl.service.d 2>/dev/null || true
+    rm /usr/lib/plugins/generic/libqevdevlamyplugin.so 2>/dev/null || true
 }
 
 
