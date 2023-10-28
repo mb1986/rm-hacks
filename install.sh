@@ -14,6 +14,9 @@ ZONEINFO_DIR="/usr/share/zoneinfo/"
 
 uninstall () {
     rm -rf ${CACHE_DIR}*
+
+    rm -rf /etc/systemd/system/xochitl.service.d
+    rm /usr/lib/plugins/generic/libqevdevlamyplugin.so || true
 }
 
 
@@ -75,7 +78,13 @@ install_stylus () {
     resp=$?
     set -e
     if [ "$resp" -eq "0" ]; then
-        sh -c "$(wget https://raw.githubusercontent.com/ddvk/remarkable-stylus/master/patch.sh -O-)"
+        wget "https://github.com/ddvk/remarkable-stylus/releases/download/0.0.3/libqevdevlamyplugin.so" -O /usr/lib/plugins/generic/libqevdevlamyplugin.so
+        mkdir -p /etc/systemd/system/xochitl.service.d
+        cat << EOF > /etc/systemd/system/xochitl.service.d/evdevlamy.conf
+[Service]
+ExecStart=
+ExecStart=/usr/bin/xochitl --system -plugin evdevlamy
+EOF
     fi
 }
 
