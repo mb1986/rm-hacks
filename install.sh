@@ -1,9 +1,9 @@
 set -e
 
-COLOR_BLUE='\e[34m'
-COLOR_YELLOW='\e[33m'
-COLOR_GREEN='\e[32m'
-COLOR_RED='\e[31m'
+COLOR_USER='\e[36m'
+COLOR_WARNING='\e[33m'
+COLOR_SUCCESS='\e[32m'
+COLOR_ERROR='\e[31m'
 NOCOLOR='\e[0m'
 
 APP_BINARY="/usr/bin/xochitl"
@@ -53,12 +53,12 @@ patch () {
     fi
 
     if [ -z "$patch_version" ]; then
-        echo -e "${COLOR_RED}No suitable patch found...${NOCOLOR}"
+        echo -e "${COLOR_ERROR}No suitable patch found...${NOCOLOR}"
         exit 1
     fi
 
 
-    echo -e "${COLOR_GREEN}Trying to download and install patch: '$patch_version'${NOCOLOR}"
+    echo -e "${COLOR_SUCCESS}Trying to download and install patch: '$patch_version'${NOCOLOR}"
 
     pass=$(sha256sum $APP_BINARY | cut -c1-64)
     wget -O- $PATCH_URL/${patch_version}_$hash.patch | openssl aes-256-cbc -d -a -md sha512 -pbkdf2 -iter 1000000 -salt -pass pass:$pass | tar --overwrite -xjC $CACHE_DIR
@@ -67,7 +67,7 @@ patch () {
 
 ask () {
     while true; do
-        echo -ne "${COLOR_BLUE}"
+        echo -ne "${COLOR_USER}"
         read -p "$1 [Y/n]? " yn
         echo -ne "${NOCOLOR}"
         case $yn in
@@ -97,7 +97,7 @@ EOF
 
 
 set_timezone () {
-    echo -ne "${COLOR_BLUE}Your current timezone is: "
+    echo -ne "${COLOR_USER}Your current timezone is: "
     timedatectl | grep "Time zone" | xargs | cut -c12-
     echo -ne "${NOCOLOR}"
     set +e
@@ -119,13 +119,13 @@ set_timezone () {
         echo -n $timezones | xargs -n5 | awk '{printf "%-30s %-30s %-30s %-30s %-30s\n",$1,$2,$3,$4,$5 }'
         echo "-----------------------------------------------------------------------------------------------------------------------------------------------------------"
 
-        echo -ne "${COLOR_BLUE}"
+        echo -ne "${COLOR_USER}"
         read -p "Type chosen timezone: " timezone
         echo -ne "${NOCOLOR}"
 
         timedatectl set-timezone $timezone
 
-        echo -ne "${COLOR_BLUE}Your new timezone is: "
+        echo -ne "${COLOR_USER}Your new timezone is: "
         timedatectl | grep "Time zone" | xargs | cut -c12-
         echo -ne "${NOCOLOR}"
     fi
@@ -133,15 +133,15 @@ set_timezone () {
 
 
 echo ""
-echo -e "${COLOR_BLUE} rM Hacks Installer ${NOCOLOR}"
-echo -e "${COLOR_BLUE}--------------------${NOCOLOR}"
+echo -e "${COLOR_USER} rM Hacks Installer ${NOCOLOR}"
+echo -e "${COLOR_USER}--------------------${NOCOLOR}"
 echo ""
 
 if [[ "$1" = "patch" && -n "$2" || -z "$1" ]]; then
 
     patch_version=$2
     patch
-    echo -e "${COLOR_GREEN}The patch '$patch_version' installed successfully (hopefully)!${NOCOLOR}"
+    echo -e "${COLOR_SUCCESS}The patch '$patch_version' installed successfully (hopefully)!${NOCOLOR}"
 
     install_stylus
 
@@ -150,7 +150,7 @@ if [[ "$1" = "patch" && -n "$2" || -z "$1" ]]; then
 elif [ "$1" = "uninstall" ]; then
 
     uninstall
-    echo -e "The patch ${COLOR_YELLOW}uninstalled${NOCOLOR} successfully!"
+    echo -e "The patch ${COLOR_WARNING}uninstalled${NOCOLOR} successfully!"
 
 else
 
@@ -159,7 +159,7 @@ else
 
 fi
 
-echo -e "${COLOR_YELLOW}Please restart your device to see effects...${NOCOLOR}"
+echo -e "${COLOR_WARNING}Please restart your device to see effects...${NOCOLOR}"
 echo "Have fun, until next time, bye!"
 
 exit 0
