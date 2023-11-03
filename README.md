@@ -6,6 +6,16 @@ These changes don't alter the application's core code directly
 but impact how it functions.
 Before using them, please read the disclaimer below.
 
+> I'd like to give credit to a few very supportive individuals who dedicate their
+> time and effort to help in the process of tools development, testing and
+> reviving hacks. Without their contributions, this entire project might not be
+> alive. And here they are:
+>
+> [<img src="https://github.com/ReemX.png" alt="ReemX" width="60"/>](https://github.com/ReemX)
+> [<img src="https://github.com/atngames.png" alt="atngames" width="60"/>](https://github.com/atngames)
+> [<img src="https://github.com/beelux.png" alt="beelux" width="60"/>](https://github.com/beelux)
+> [<img src="https://github.com/ard0gg.png" alt="ard0gg" width="60"/>](https://github.com/ard0gg)
+
 ## Disclaimer
 
 This repository contains patches and modifications for third-party software,
