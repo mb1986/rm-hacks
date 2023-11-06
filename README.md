@@ -58,10 +58,19 @@ sh -c "$(wget https://raw.githubusercontent.com/mb1986/rm-hacks/main/install.sh 
 
 | Version |    3.7.0.1930    |    3.6.1.1894    |
 |  :---:  |       :---:      |       :---:      |
+|**0.0.5**|:white_check_mark:|        :x:       |
 |**0.0.4**|:white_check_mark:|        :x:       |
 |**0.0.3**|:white_check_mark:|        :x:       |
 |**0.0.2**|:white_check_mark:|        :x:       |
 |**0.0.1**|:white_check_mark:|:white_check_mark:|
+
+### Version 0.0.5
+
+This patch includes all the hacks from the previous one, along with the following:
+
+- A brand new settings page to configure which hacks should be enabled and which should not (Menu &#8669; Settings &#8669; rM Hacks).
+  By default, all the hacks are enabled, and the configuration will be preserved between restarts.
+- Lamy button double-click now triggers an undo action."
 
 ### Version 0.0.4
 
