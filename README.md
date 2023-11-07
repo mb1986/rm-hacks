@@ -70,7 +70,7 @@ This patch includes all the hacks from the previous one, along with the followin
 
 - A brand new settings page to configure which hacks should be enabled and which should not (Menu &#8669; Settings &#8669; rM Hacks).
   By default, all the hacks are enabled, and the configuration will be preserved between restarts.
-- Lamy button double-click now triggers an undo action."
+- Lamy button double-click now triggers an undo action.
 
 ### Version 0.0.4
 
