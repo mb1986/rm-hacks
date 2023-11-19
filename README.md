@@ -56,13 +56,13 @@ sh -c "$(wget https://raw.githubusercontent.com/mb1986/rm-hacks/main/install.sh 
 
 ## Patches
 
-| Version |    3.7.0.1930    |    3.6.1.1894    |
-|  :---:  |       :---:      |       :---:      |
-|**0.0.5**|:white_check_mark:|        :x:       |
-|**0.0.4**|:white_check_mark:|        :x:       |
-|**0.0.3**|:white_check_mark:|        :x:       |
-|**0.0.2**|:white_check_mark:|        :x:       |
-|**0.0.1**|:white_check_mark:|:white_check_mark:|
+| Version |    3.8.2.1965    |    3.7.0.1930    |    3.6.1.1894    |
+|  :---:  |       :---:      |       :---:      |       :---:      |
+|**0.0.5**|:white_check_mark:|:white_check_mark:|        :x:       |
+|**0.0.4**|        :x:       |:white_check_mark:|        :x:       |
+|**0.0.3**|        :x:       |:white_check_mark:|        :x:       |
+|**0.0.2**|        :x:       |:white_check_mark:|        :x:       |
+|**0.0.1**|        :x:       |:white_check_mark:|:white_check_mark:|
 
 ### Version 0.0.5
 
