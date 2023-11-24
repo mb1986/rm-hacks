@@ -42,10 +42,10 @@ find_version () {
             patch_version="0.0.5"
             ;;
         "830732bd53c8c94d73013a238ca0427a6c9a252f")
-            patch_version="0.0.5"
+            patch_version="0.0.6"
             ;;
         "ceba98d368cc16aa6af806243969a3ba88c13bd1")
-            patch_version="0.0.5"
+            patch_version="0.0.6"
             ;;
     esac
 }
