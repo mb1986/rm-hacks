@@ -69,7 +69,7 @@ sh -c "$(wget https://raw.githubusercontent.com/mb1986/rm-hacks/main/install.sh 
 
 This patch includes all the hacks from the previous one, along with the following:
 
-- Document-level toggle buttons:
+- Document-level toggle buttons (accessible through the _Share and Convert_):
   - Show/hide clock
   - Suppress all swipes and gestures
   - Toggle WiFi
