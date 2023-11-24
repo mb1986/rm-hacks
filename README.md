@@ -69,7 +69,7 @@ sh -c "$(wget https://raw.githubusercontent.com/mb1986/rm-hacks/main/install.sh 
 
 This patch includes all the hacks from the previous one, along with the following:
 
-- Document-level toggle buttons (accessible through the _Share and Convert_):
+- Document-level toggle buttons (accessible through the _Share and Convert_ menu):
   - Show/hide clock
   - Suppress all swipes and gestures
   - Toggle WiFi
@@ -82,6 +82,7 @@ This patch includes all the hacks from the previous one, along with the followin
 - Staedtler pencil eraser support (hopefully).
 - Taller area for the writing tool/eraser switch gesture.
 - Better placement of the back button on hacks configuration views.
+- Fewer stroke sizes for the eraser compared to other tools, and fixed eraser stroke sizes panel overflow.
 
 ### Version 0.0.5
 
