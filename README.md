@@ -58,11 +58,30 @@ sh -c "$(wget https://raw.githubusercontent.com/mb1986/rm-hacks/main/install.sh 
 
 | Version |    3.8.2.1965    |    3.7.0.1930    |    3.6.1.1894    |
 |  :---:  |       :---:      |       :---:      |       :---:      |
+|**0.0.6**|:white_check_mark:|        :x:       |        :x:       |
 |**0.0.5**|:white_check_mark:|:white_check_mark:|        :x:       |
 |**0.0.4**|        :x:       |:white_check_mark:|        :x:       |
 |**0.0.3**|        :x:       |:white_check_mark:|        :x:       |
 |**0.0.2**|        :x:       |:white_check_mark:|        :x:       |
 |**0.0.1**|        :x:       |:white_check_mark:|:white_check_mark:|
+
+### Version 0.0.6
+
+This patch includes all the hacks from the previous one, along with the following:
+
+- Document-level toggle buttons:
+  - Show/hide clock
+  - Suppress all swipes and gestures
+  - Toggle WiFi
+  - Disable/enable rM1 buttons
+  - Toggle automatic updates
+- Cycle between two recent documents by swiping two fingers up from the bottom of the page.
+- Gesture to swap the last two pen thicknesses (strokes) by swiping one finger down in the top right corner.
+- Gesture to swap the last two colors by swiping one finger up in the top right corner.
+- Configuration setting to disable the hack that adds additional stroke sizes.
+- Staedtler eraser pencil support (hopefully).
+- Taller area for the writing tool/eraser switch gesture.
+- Better placement of the back button on hacks configuration views.
 
 ### Version 0.0.5
 
