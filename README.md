@@ -79,7 +79,7 @@ This patch includes all the hacks from the previous one, along with the followin
 - Gesture to swap the last two pen thicknesses (strokes) by swiping one finger down in the top right corner.
 - Gesture to swap the last two colors by swiping one finger up in the top right corner.
 - Configuration setting to disable the hack that adds additional stroke sizes.
-- Staedtler eraser pencil support (hopefully).
+- Staedtler pencil eraser support (hopefully).
 - Taller area for the writing tool/eraser switch gesture.
 - Better placement of the back button on hacks configuration views.
 
