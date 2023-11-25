@@ -65,6 +65,9 @@ sh -c "$(wget https://raw.githubusercontent.com/mb1986/rm-hacks/main/install.sh 
 |**0.0.2**|        :x:       |:white_check_mark:|        :x:       |
 |**0.0.1**|        :x:       |:white_check_mark:|:white_check_mark:|
 
+If you're still using a device with version 2.x, you might prefer using
+[ddvk's Binary Patches](https://github.com/ddvk/remarkable-hacks).
+
 ### Version 0.0.6
 
 This patch includes all the hacks from the previous one, along with the following:
@@ -76,9 +79,9 @@ This patch includes all the hacks from the previous one, along with the followin
   - Disable/enable rM1 buttons
   - Toggle automatic updates
 - Cycle between two recent documents by swiping two fingers up from the bottom of the page.
-- Gesture to swap the last two pen thicknesses (strokes) by swiping one finger down in the top right corner.
-- Gesture to swap the last two colors by swiping one finger up in the top right corner.
-- Clock in the bottom left corner.
+- Gesture to swap the last two pen thicknesses (strokes) by swiping one finger down in the top right corner (right-handed)/left corner (left-handed).
+- Gesture to swap the last two colors by swiping one finger up in the top right corner (right-handed)/left corner (left-handed).
+- Clock in the bottom of the toolbar.
 - Configuration setting to disable the hack that adds additional stroke sizes.
 - Staedtler pencil eraser support (hopefully).
 - Taller area for the writing tool/eraser switch gesture.
@@ -97,9 +100,9 @@ This patch includes all the hacks from the previous one, along with the followin
 
 This patch includes all the hacks from the previous one, along with the following:
 
-- Additional stroke sizes (0.5, 1, 1.5, 2, 3, 5, 8, 13).
-- Gesture to switch between the last two tools: swipe one finger down in the top left corner.
-- Gesture to switch between the writing tool and eraser: swipe one finger up in the top left corner.
+- Additional stroke sizes (0.5, 1.5, 5, 8, 13).
+- Gesture to switch between the last two tools: swipe one finger down in the top left corner (right-handed)/right corner (left-handed).
+- Gesture to switch between the writing tool and eraser: swipe one finger up in the top left corner (right-handed)/right corner (left-handed).
 
 ### Version 0.0.3
 
@@ -119,13 +122,11 @@ This patch includes all the hacks from the previous one, along with the followin
 Our first patch, a pilot and proof of concept, is designed to bring back some
 popular features for devices updated to version 3.x.
 
-If you're still using a device with version 2.x, you might prefer using
-[ddvk's Binary Patches](https://github.com/ddvk/remarkable-hacks).
-
 This patch includes the following changes:
 
-- The Lamy Pen button now works for erasing (only erasing for now).
+- The Lamy Pen button now works for erasing (erasing only for now).
   To use this feature, install
   [ddvk's Qt Plugin for Lamy Pen](https://github.com/ddvk/remarkable-stylus) first. You will not need to install ddvk-hacks like it recommends, as this replaces that dependency.
 - The toolbar icon changes from the default open icon to a brush icon.
-- The close icon (x) in the top right corner has been removed.
+- The close icon (x) in the top right corner (right-handed)/left corner (left-handed) has been removed.
+  You can still close the document by swiping one finger down from the top.
