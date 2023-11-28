@@ -168,7 +168,24 @@ else
 
 fi
 
-echo -e "${COLOR_WARNING}Please restart your device to see effects...${NOCOLOR}"
-echo "Have fun, until next time, bye!"
+# Apply changes if the xochitl service is active
+if systemctl --quiet is-active xochitl.service 2> /dev/null; then
+    if ! systemctl --quiet restart xochitl.service 2> /dev/null; then
+        echo -e "${COLOR_ERROR}Failed to restart the user interface, uninstalling...${NOCOLOR}"
+        uninstall
+        if ! systemctl restart xochitl.service 2> /dev/null; then
+            echo -e "${COLOR_ERROR}Failed to restart the user interface again. Something has gone very wrong."
+            echo -e "DO NOT RESTART YOUR DEVICE."
+            echo -e "The user interface is failing to start, so you may lose access to the device if you restart it.{NOCOLOR}"
+        else
+            echo -e "${COLOR_ERROR}Installation has failed but successfully uninstalled${NOCOLOR}"
+        fi
+        echo -e "${COLOR_WARNING}Please open an issue to get help resolving why installation has failed: https://github.com/mb1986/rm-hacks/issues/new{$NOCOLOR}"
+    fi
+else
+    echo -e "${COLOR_WARNING}Please restart your device to see effects...${NOCOLOR}"
+fi
 
+# TODO - add support for different launchers
+echo "Have fun, until next time, bye!"
 exit 0
