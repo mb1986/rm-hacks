@@ -101,6 +101,7 @@ install_stylus () {
 ExecStart=
 ExecStart=/usr/bin/xochitl --system -plugin evdevlamy
 EOF
+        systemctl daemon-reload
     fi
 }
 
