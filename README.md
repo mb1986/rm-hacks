@@ -132,4 +132,4 @@ This patch includes the following changes:
 - The close icon (x) in the top right corner (right-handed)/left corner (left-handed) has been removed.
   You can still close the document by swiping one finger down from the top.
 
-For information on the licensing conditions of this software, please refer to the accompanying [LICENCE](LICENCE) file.
+For information on the licensing conditions of this software, please refer to the accompanying [LICENSE](LICENSE) file.
