@@ -132,17 +132,4 @@ This patch includes the following changes:
 - The close icon (x) in the top right corner (right-handed)/left corner (left-handed) has been removed.
   You can still close the document by swiping one finger down from the top.
 
-## License
-
-This repository is provided under the MIT License, as described in the
-root `LICENSE` file. However, please note that all the files in the "patches"
-directory are marked as "All Rights Reserved," which means that they are
-protected by copyright, and no specific license information is available for
-them. Users should assume that they have no rights or permissions to use,
-modify, or distribute these files without explicit permission from the
-copyright holder.
-
-Please refrain from using or distributing any of the files in the "patches"
-directory without obtaining proper authorization.
-
-For all other files in this repository, the MIT License applies.
+For information on the licensing conditions of this software, please refer to the accompanying [LICENCE](LICENCE) file.

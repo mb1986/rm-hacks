@@ -27,9 +27,9 @@ THE SOFTWARE.
 Please be aware that this repository contains a directory named "patches" with
 binary data files. These files are subject to a separate licensing arrangement
 and are marked as "All Rights Reserved." This means they are protected by
-copyright, and no specific license information is provided for them. Users
-should assume that they have no rights or permissions to use, modify, or
-distribute these files without explicit permission from the copyright holder.
+copyright, and no specific license information is provided for them. Users are
+not allowed to modify or distribute these files without explicit permission
+from the copyright holder.
 
 The MIT License, which applies to the rest of the files in this repository,
 does not cover the files in the "patches" directory.
