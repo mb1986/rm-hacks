@@ -16,9 +16,12 @@ uninstall () {
     rm -rf ${CACHE_DIR}*
 
     rm -f /etc/systemd/system/xochitl.service.d/evdevlamy.conf
-    rm -f /etc/systemd/system/xochitl.service.d/override-onfailure.conf
     if [ -z "$(ls -A /etc/systemd/system/xochitl.service.d)" ]; then
         rmdir /etc/systemd/system/xochitl.service.d
+    fi
+    rm -f /etc/systemd/system/remarkable-fail.service.d/override-onfailure.conf
+    if [ -z "$(ls -A /etc/systemd/system/remarkable-fail.service.d)" ]; then
+        rmdir /etc/systemd/system/remarkable-fail.service.d
     fi
     rm -f /usr/lib/plugins/generic/libqevdevlamyplugin.so
     systemctl daemon-reload
@@ -70,10 +73,11 @@ patch () {
 
     pass=$(sha256sum $APP_BINARY | cut -c1-64)
     wget -O- $PATCH_URL/${patch_version}_$hash.patch | openssl aes-256-cbc -d -a -md sha512 -pbkdf2 -iter 1000000 -salt -pass pass:$pass | tar --overwrite -xjC $CACHE_DIR
-    cat << EOF > /etc/systemd/system/xochitl.service.d/override-onfailure.conf
+    mkdir -p /etc/systemd/system/remarkable-fail.service.d
+    cat << EOF > /etc/systemd/system/remarkable-fail.service.d/override-onfailure.conf
 [Service]
-OnFailure=
-OnFailure=/home/root/.local/bin/rm-hacks-remarkable-fail.sh
+ExecStart=
+ExecStart=/home/root/.local/bin/rm-hacks-remarkable-fail.sh
 EOF
     mkdir -p /home/root/.local/bin
     cat << EOF > /home/root/.local/bin/rm-hacks-remarkable-fail.sh
