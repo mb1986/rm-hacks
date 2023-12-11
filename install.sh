@@ -189,10 +189,10 @@ fi
 # Apply changes if the xochitl service is active
 if systemctl --quiet is-active xochitl.service 2> /dev/null; then
     touch /tmp/rm-hacks-skip-onfailure
-    if ! systemctl --quiet restart xochitl.service 2> /dev/null; then
+    if ! systemctl --quiet restart xochitl.service 2> /dev/null || systemctl --quiet is-failed xochitl.service; then
         echo -e "${COLOR_ERROR}Failed to restart the user interface, uninstalling...${NOCOLOR}"
         uninstall
-        if ! systemctl --quiet restart xochitl.service 2> /dev/null; then
+        if ! systemctl --quiet restart xochitl.service 2> /dev/null || systemctl --quiet is-failed xochitl.service; then
             echo -e "${COLOR_ERROR}Failed to restart the user interface again. Something has gone very wrong."
             echo -e "DO NOT RESTART YOUR DEVICE."
             echo -e "The user interface is failing to start, so you may lose access to the device if you restart it.{NOCOLOR}"
