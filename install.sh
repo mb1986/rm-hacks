@@ -104,6 +104,19 @@ ask () {
     done
 }
 
+try-restart-xochitl () {
+    if ! systemctl --quiet restart xochitl.service 2> /dev/null || systemctl --quiet is-failed xochitl.service; then
+        return 1
+    fi
+    # Wait 5 seconds to give xochitl a chance to startup and then crash
+    sleep 5
+    # Wait for remarkable-fail.service to finish running if it's running
+    systemctl --quiet --wait is-active remarkable-fail.service
+    if systemctl --quiet is-failed xochitl.service; then
+        return 1
+    fi
+    return 0
+}
 
 install_stylus () {
     set +e
@@ -189,10 +202,14 @@ fi
 # Apply changes if the xochitl service is active
 if systemctl --quiet is-active xochitl.service 2> /dev/null; then
     touch /tmp/rm-hacks-skip-onfailure
-    if ! systemctl --quiet restart xochitl.service 2> /dev/null || systemctl --quiet is-failed xochitl.service; then
+    if ! try-restart-xochitl; then
+        # TODO - Move uninstall to be something run by remarkable-fail.service if /tmp/rm-hacks-skip-onfailure exists
+        #      - Have /tmp/rm-hacks-skip-onfailure be removed by xochitl upon successful startup
+        #      - Don't remove /tmp/rm-hacks-skip-onfailure in this script
+        #      - Rework try-restart-xochitl to wait for file to be removed or xochitl.service to fail
         echo -e "${COLOR_ERROR}Failed to restart the user interface, uninstalling...${NOCOLOR}"
         uninstall
-        if ! systemctl --quiet restart xochitl.service 2> /dev/null || systemctl --quiet is-failed xochitl.service; then
+        if ! try-restart-xochitl; then
             echo -e "${COLOR_ERROR}Failed to restart the user interface again. Something has gone very wrong."
             echo -e "DO NOT RESTART YOUR DEVICE."
             echo -e "The user interface is failing to start, so you may lose access to the device if you restart it.{NOCOLOR}"
