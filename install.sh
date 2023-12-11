@@ -104,7 +104,7 @@ ask () {
     done
 }
 
-try-restart-xochitl () {
+try_restart_xochitl () {
     if ! systemctl --quiet restart xochitl.service 2> /dev/null || systemctl --quiet is-failed xochitl.service; then
         return 1
     fi
@@ -202,14 +202,14 @@ fi
 # Apply changes if the xochitl service is active
 if systemctl --quiet is-active xochitl.service 2> /dev/null; then
     touch /tmp/rm-hacks-skip-onfailure
-    if ! try-restart-xochitl; then
+    if ! try_restart_xochitl; then
         # TODO - Move uninstall to be something run by remarkable-fail.service if /tmp/rm-hacks-skip-onfailure exists
         #      - Have /tmp/rm-hacks-skip-onfailure be removed by xochitl upon successful startup
         #      - Don't remove /tmp/rm-hacks-skip-onfailure in this script
         #      - Rework try-restart-xochitl to wait for file to be removed or xochitl.service to fail
         echo -e "${COLOR_ERROR}Failed to restart the user interface, uninstalling...${NOCOLOR}"
         uninstall
-        if ! try-restart-xochitl; then
+        if ! try_restart_xochitl; then
             echo -e "${COLOR_ERROR}Failed to restart the user interface again. Something has gone very wrong."
             echo -e "DO NOT RESTART YOUR DEVICE."
             echo -e "The user interface is failing to start, so you may lose access to the device if you restart it.{NOCOLOR}"
