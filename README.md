@@ -1,3 +1,4 @@
+[![rm1](https://img.shields.io/badge/rM1-supported-green)](https://remarkable.com/store/remarkable) [![rm2](https://img.shields.io/badge/rM2-supported-green)](https://remarkable.com/store/remarkable-2) [![Discord](https://img.shields.io/discord/385916768696139794.svg?label=reMarkable&logo=discord&logoColor=ffffff&color=7389D8&labelColor=6A7EC2)](https://discord.gg/ATqQGfu)
 # rM Hacks
 
 This repository is meant to share small improvements and tweaks for rM devices,
@@ -58,6 +59,7 @@ sh -c "$(wget https://raw.githubusercontent.com/mb1986/rm-hacks/main/install.sh 
 
 | Version |    3.8.2.1965    |    3.7.0.1930    |    3.6.1.1894    |
 |  :---:  |       :---:      |       :---:      |       :---:      |
+|**0.0.7**|:white_check_mark:|        :x:       |        :x:       |
 |**0.0.6**|:white_check_mark:|        :x:       |        :x:       |
 |**0.0.5**|:white_check_mark:|:white_check_mark:|        :x:       |
 |**0.0.4**|        :x:       |:white_check_mark:|        :x:       |
@@ -67,6 +69,31 @@ sh -c "$(wget https://raw.githubusercontent.com/mb1986/rm-hacks/main/install.sh 
 
 If you're still using a device with version 2.x, you might prefer using
 [ddvk's Binary Patches](https://github.com/ddvk/remarkable-hacks).
+
+### Version 0.0.7
+
+This patch includes all the hacks from the previous one, along with the following:
+
+#### New features:
+
+- Toolbar button showing the current page and the page count, clicking it opens fast page scroll.
+- Battery level and WiFi signal strength indicators available on the bottom of the toolbar.
+- Screen refresh trigger via five-finger tap - natively available but disabled by experimental flag.
+- Additional table-of-contents toolbar button.
+- Enable sleep mode by swiping up from the top of the screen (light or deep sleep selectable in Settings/Security).
+- Display `...zzZ` in the top right corner during light sleep mode instead of a big black banner.
+
+#### Bug fixes:
+
+- Configuration items may be scrolled vertically.
+- Pen thickness and color indicator show only for the tools that make use of them.
+- All the tools remember last two strokes and colors separately.
+
+#### Other changes:
+
+- Document-level clock moved from the bottom to the top of the toolbar.
+- Make clock toggle option permanent between restarts.
+- Changed names of document-level toggles (i.e. remove "Disabled" and "Enabled" words).
 
 ### Version 0.0.6
 
@@ -130,3 +157,5 @@ This patch includes the following changes:
 - The toolbar icon changes from the default open icon to a brush icon.
 - The close icon (x) in the top right corner (right-handed)/left corner (left-handed) has been removed.
   You can still close the document by swiping one finger down from the top.
+
+For information on the licensing conditions of this software, please refer to the accompanying [LICENSE](LICENSE) file.
