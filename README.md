@@ -39,7 +39,7 @@ For your convenience, we've provided an automated installation script.
 1. Connect to your rM device via SSH.
 2. Paste the below command, then press Enter.
 3. Follow the on-screen instructions.
-4. Do not forget to restart your device at the end.
+4. If prompted restart your device.
 
 ```shell
 sh -c "$(wget https://raw.githubusercontent.com/mb1986/rm-hacks/main/install.sh -O-)"
