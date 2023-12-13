@@ -47,6 +47,9 @@ find_version () {
         "ceba98d368cc16aa6af806243969a3ba88c13bd1")
             patch_version="0.0.7"
             ;;
+        "03af9c2bf1173b6397e89955624300ae987f7ac0")
+            patch_version="0.0.7"
+            ;;
     esac
 }
 
