@@ -57,15 +57,15 @@ sh -c "$(wget https://raw.githubusercontent.com/mb1986/rm-hacks/main/install.sh 
 
 ## Patches
 
-| Version |    3.8.3.1976    |    3.8.2.1965    |    3.7.0.1930    |    3.6.1.1894    |
-|  :---:  |       :---:      |       :---:      |       :---:      |       :---:      |
-|**0.0.7**|:white_check_mark:|:white_check_mark:|        :x:       |        :x:       |
-|**0.0.6**|        :x:       |:white_check_mark:|        :x:       |        :x:       |
-|**0.0.5**|        :x:       |:white_check_mark:|:white_check_mark:|        :x:       |
-|**0.0.4**|        :x:       |        :x:       |:white_check_mark:|        :x:       |
-|**0.0.3**|        :x:       |        :x:       |:white_check_mark:|        :x:       |
-|**0.0.2**|        :x:       |        :x:       |:white_check_mark:|        :x:       |
-|**0.0.1**|        :x:       |        :x:       |:white_check_mark:|:white_check_mark:|
+| Version |     3.9.3.1986   |    3.8.3.1976    |    3.8.2.1965    |    3.7.0.1930    |    3.6.1.1894    |
+|  :---:  |       :---:      |       :---:      |       :---:      |       :---:      |       :---:      |
+|**0.0.7**|        :x:       |:white_check_mark:|:white_check_mark:|        :x:       |        :x:       |
+|**0.0.6**|        :x:       |        :x:       |:white_check_mark:|        :x:       |        :x:       |
+|**0.0.5**|        :x:       |        :x:       |:white_check_mark:|:white_check_mark:|        :x:       |
+|**0.0.4**|        :x:       |        :x:       |        :x:       |:white_check_mark:|        :x:       |
+|**0.0.3**|        :x:       |        :x:       |        :x:       |:white_check_mark:|        :x:       |
+|**0.0.2**|        :x:       |        :x:       |        :x:       |:white_check_mark:|        :x:       |
+|**0.0.1**|        :x:       |        :x:       |        :x:       |:white_check_mark:|:white_check_mark:|
 
 If you're still using a device with version 2.x, you might prefer using
 [ddvk's Binary Patches](https://github.com/ddvk/remarkable-hacks).
