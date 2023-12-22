@@ -124,7 +124,7 @@ install_stylus () {
     resp=$?
     set -e
     if [ "$resp" -eq "0" ]; then
-        wget "https://github.com/ddvk/remarkable-stylus/releases/download/0.0.3/libqevdevlamyplugin.so" -O /usr/lib/plugins/generic/libqevdevlamyplugin.so
+        wget "https://raw.githubusercontent.com/mb1986/remarkable-stylus/master/dist/libqevdevlamyplugin.so" -O /usr/lib/plugins/generic/libqevdevlamyplugin.so
         mkdir -p /etc/systemd/system/xochitl.service.d
         cat << EOF > /etc/systemd/system/xochitl.service.d/evdevlamy.conf
 [Service]
