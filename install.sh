@@ -11,16 +11,19 @@ CACHE_DIR="/home/root/.cache/remarkable/xochitl/qmlcache/"
 PATCH_URL="https://raw.githubusercontent.com/mb1986/rm-hacks/main/patches/"
 ZONEINFO_DIR="/usr/share/zoneinfo/"
 
+dir_is_empty(){
+    [ -d "$1" ] && [ -z "$(ls -A "$1")" ]
+}
 
 uninstall () {
     rm -rf ${CACHE_DIR}*
 
     rm -f /etc/systemd/system/xochitl.service.d/evdevlamy.conf
-    if [ -z "$(ls -A /etc/systemd/system/xochitl.service.d)" ]; then
+    if dir_is_empty /etc/systemd/system/xochitl.service.d; then
         rmdir /etc/systemd/system/xochitl.service.d
     fi
     rm -f /etc/systemd/system/remarkable-fail.service.d/override-onfailure.conf
-    if [ -z "$(ls -A /etc/systemd/system/remarkable-fail.service.d)" ]; then
+    if dir_is_empty /etc/systemd/system/remarkable-fail.service.d; then
         rmdir /etc/systemd/system/remarkable-fail.service.d
     fi
     rm -f /usr/lib/plugins/generic/libqevdevlamyplugin.so
@@ -76,8 +79,9 @@ patch () {
     mkdir -p /etc/systemd/system/remarkable-fail.service.d
     cat << EOF > /etc/systemd/system/remarkable-fail.service.d/override-onfailure.conf
 [Service]
+Environment="SCRIPT=/home/root/.local/bin/rm-hacks-remarkable-fail.sh"
 ExecStart=
-ExecStart=/home/root/.local/bin/rm-hacks-remarkable-fail.sh
+ExecStart=bash -c "[ -f ${SCRIPT} ] && exec ${SCRIPT} || exec /usr/bin/remarkable-fail.sh"
 EOF
     mkdir -p /home/root/.local/bin
     cat << EOF > /home/root/.local/bin/rm-hacks-remarkable-fail.sh
