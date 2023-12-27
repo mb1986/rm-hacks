@@ -35,30 +35,39 @@ find_version () {
     case $hash in
         "143aa1d2f25affbd9ee437bc1418d6f1d577b125")
             patch_version="0.0.1"
+            qt_plugin_ver="5"
             ;;
         "610c8f928ee8908faa9cd7439271c46985952a30")
             patch_version="0.0.1"
+            qt_plugin_ver="5"
             ;;
         "ae0d21c258c0f3d93717d9bd23eb74b68ac438db")
             patch_version="0.0.5"
+            qt_plugin_ver="5"
             ;;
         "4d066636ed653ffe59d4bc3acf55aa6cef72d795")
             patch_version="0.0.5"
+            qt_plugin_ver="5"
             ;;
         "830732bd53c8c94d73013a238ca0427a6c9a252f")
             patch_version="0.0.7"
+            qt_plugin_ver="5"
             ;;
         "ceba98d368cc16aa6af806243969a3ba88c13bd1")
             patch_version="0.0.7"
+            qt_plugin_ver="5"
             ;;
         "03af9c2bf1173b6397e89955624300ae987f7ac0")
             patch_version="0.0.7"
+            qt_plugin_ver="5"
             ;;
         "b650989999a4c972a4b02e0f7ccb32b48195bfcf")
             patch_version="0.0.7"
+            qt_plugin_ver="6"
             ;;
         "43bf0ef13afdc10c701ddcb4ca96993f19d919d1")
             patch_version="0.0.7"
+            qt_plugin_ver="6"
             ;;
     esac
 }
@@ -67,15 +76,16 @@ find_version () {
 patch () {
     hash=$(sha1sum $APP_BINARY | cut -c1-40)
 
-    if [ -z "$patch_version" ]; then
-        find_version
-    fi
+    find_version
 
     if [ -z "$patch_version" ]; then
-        echo -e "${COLOR_ERROR}No suitable patch found...${NOCOLOR}"
+        echo -e "${COLOR_ERROR}No suitable patch found for '$hash'...${NOCOLOR}"
         exit 1
     fi
 
+    if [ -n "$patch_version_arg" ]; then
+        patch_version=$patch_version_arg
+    fi
 
     echo -e "${COLOR_SUCCESS}Trying to download and install patch: '$patch_version'${NOCOLOR}"
 
@@ -134,7 +144,10 @@ install_stylus () {
     if [ "$resp" -eq "0" ]; then
         upgrade_wget
 
-        $WGET "https://github.com/ddvk/remarkable-stylus/releases/download/0.0.3/libqevdevlamyplugin.so" -O /usr/lib/plugins/generic/libqevdevlamyplugin.so
+        $WGET \
+            "https://github.com/mb1986/remarkable-stylus/releases/download/qt${qt_plugin_ver}/libqevdevlamyplugin.so.${qt_plugin_ver}" \
+            -O /usr/lib/plugins/generic/libqevdevlamyplugin.so
+
         mkdir -p /etc/systemd/system/xochitl.service.d
         cat << EOF > /etc/systemd/system/xochitl.service.d/evdevlamy.conf
 [Service]
@@ -218,7 +231,7 @@ echo ""
 
 if [[ "$1" = "patch" && -n "$2" || -z "$1" ]]; then
 
-    patch_version=$2
+    patch_version_arg=$2
     patch
     echo -e "${COLOR_SUCCESS}The patch '$patch_version' installed successfully (hopefully)!${NOCOLOR}"
 
