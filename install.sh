@@ -54,6 +54,12 @@ find_version () {
         "03af9c2bf1173b6397e89955624300ae987f7ac0")
             patch_version="0.0.7"
             ;;
+        "b650989999a4c972a4b02e0f7ccb32b48195bfcf")
+            patch_version="0.0.7"
+            ;;
+        "43bf0ef13afdc10c701ddcb4ca96993f19d919d1")
+            patch_version="0.0.7"
+            ;;
     esac
 }
 
