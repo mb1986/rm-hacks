@@ -11,6 +11,8 @@ CACHE_DIR="/home/root/.cache/remarkable/xochitl/qmlcache/"
 PATCH_URL="https://raw.githubusercontent.com/mb1986/rm-hacks/main/patches/"
 ZONEINFO_DIR="/usr/share/zoneinfo/"
 
+WGET="wget"
+
 
 uninstall () {
     rm -rf ${CACHE_DIR}*
@@ -72,7 +74,7 @@ patch () {
     echo -e "${COLOR_SUCCESS}Trying to download and install patch: '$patch_version'${NOCOLOR}"
 
     pass=$(sha256sum $APP_BINARY | cut -c1-64)
-    wget -O- $PATCH_URL/${patch_version}_$hash.patch | openssl aes-256-cbc -d -a -md sha512 -pbkdf2 -iter 1000000 -salt -pass pass:$pass | tar --overwrite -xjC $CACHE_DIR
+    $WGET -O- $PATCH_URL/${patch_version}_$hash.patch | openssl aes-256-cbc -d -a -md sha512 -pbkdf2 -iter 1000000 -salt -pass pass:$pass | tar --overwrite -xjC $CACHE_DIR
     mkdir -p /etc/systemd/system/remarkable-fail.service.d
     cat << EOF > /etc/systemd/system/remarkable-fail.service.d/override-onfailure.conf
 [Service]
@@ -124,7 +126,9 @@ install_stylus () {
     resp=$?
     set -e
     if [ "$resp" -eq "0" ]; then
-        wget "https://raw.githubusercontent.com/mb1986/remarkable-stylus/master/dist/libqevdevlamyplugin.so" -O /usr/lib/plugins/generic/libqevdevlamyplugin.so
+        upgrade_wget
+
+        $WGET "https://github.com/ddvk/remarkable-stylus/releases/download/0.0.3/libqevdevlamyplugin.so" -O /usr/lib/plugins/generic/libqevdevlamyplugin.so
         mkdir -p /etc/systemd/system/xochitl.service.d
         cat << EOF > /etc/systemd/system/xochitl.service.d/evdevlamy.conf
 [Service]
@@ -136,12 +140,41 @@ EOF
 }
 
 
+upgrade_wget () {
+    wget_path=/home/root/.local/share/rm-hacks/wget
+    wget_remote=http://toltec-dev.org/thirdparty/bin/wget-v1.21.1-1
+    wget_checksum=c258140f059d16d24503c62c1fdf747ca843fe4ba8fcd464a6e6bda8c3bbb6b5
+
+    if [ -f "$wget_path" ] && ! sha256sum -c <(echo "$wget_checksum  $wget_path") > /dev/null 2>&1; then
+        rm "$wget_path"
+    fi
+
+    if ! [ -f "$wget_path" ]; then
+        echo "Fetching secure wget..."
+        # Download and compare to hash
+        mkdir -p "$(dirname "$wget_path")"
+        if ! wget -q "$wget_remote" --output-document "$wget_path"; then
+            echo "${COLOR_ERROR}Error: Could not fetch wget, make sure you have a stable Wi-Fi connection${NOCOLOR}"
+            exit 1
+        fi
+    fi
+
+    if ! sha256sum -c <(echo "$wget_checksum  $wget_path") > /dev/null 2>&1; then
+        echo "${COLOR_ERROR}Error: Invalid checksum for the local wget binary${NOCOLOR}"
+        exit 1
+    fi
+
+    chmod 755 "$wget_path"
+    WGET="$wget_path"
+}
+
+
 set_timezone () {
     echo -ne "${COLOR_USER}Your current timezone is: "
     timedatectl | grep "Time zone" | xargs | cut -c12-
     echo -ne "${NOCOLOR}"
     set +e
-    ask "Would you like to set proper timezone"
+    ask "Would you like to set different timezone"
     resp=$?
     set -e
     if [ "$resp" -eq "0" ]; then
