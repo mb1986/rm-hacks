@@ -33,6 +33,14 @@ uninstall () {
 
 find_version () {
     case $hash in
+        "d2e3c8ae6fb8a226cec0d95b9ad636c538ead9df")
+            patch_version="0.0.7"
+            qt_plugin_ver="5"
+            ;;
+        "f2a5b8ff42282ea8e49a4bc36e6d914dbeb7f935")
+            patch_version="0.0.7"
+            qt_plugin_ver="5"
+            ;;
         "143aa1d2f25affbd9ee437bc1418d6f1d577b125")
             patch_version="0.0.1"
             qt_plugin_ver="5"
