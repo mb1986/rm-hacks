@@ -11,9 +11,13 @@ CACHE_DIR="/home/root/.cache/remarkable/xochitl/qmlcache/"
 PATCH_URL="https://raw.githubusercontent.com/mb1986/rm-hacks/main/patches/"
 ZONEINFO_DIR="/usr/share/zoneinfo/"
 
+WGET="wget"
+
+
 dir_is_empty(){
     [ -d "$1" ] && [ -z "$(ls -A "$1")" ]
 }
+
 
 uninstall () {
     rm -rf ${CACHE_DIR}*
@@ -34,26 +38,49 @@ uninstall () {
 
 find_version () {
     case $hash in
+        "d2e3c8ae6fb8a226cec0d95b9ad636c538ead9df")
+            patch_version="0.0.7"
+            qt_plugin_ver="5"
+            ;;
+        "f2a5b8ff42282ea8e49a4bc36e6d914dbeb7f935")
+            patch_version="0.0.7"
+            qt_plugin_ver="5"
+            ;;
         "143aa1d2f25affbd9ee437bc1418d6f1d577b125")
             patch_version="0.0.1"
+            qt_plugin_ver="5"
             ;;
         "610c8f928ee8908faa9cd7439271c46985952a30")
             patch_version="0.0.1"
+            qt_plugin_ver="5"
             ;;
         "ae0d21c258c0f3d93717d9bd23eb74b68ac438db")
             patch_version="0.0.5"
+            qt_plugin_ver="5"
             ;;
         "4d066636ed653ffe59d4bc3acf55aa6cef72d795")
             patch_version="0.0.5"
+            qt_plugin_ver="5"
             ;;
         "830732bd53c8c94d73013a238ca0427a6c9a252f")
             patch_version="0.0.7"
+            qt_plugin_ver="5"
             ;;
         "ceba98d368cc16aa6af806243969a3ba88c13bd1")
             patch_version="0.0.7"
+            qt_plugin_ver="5"
             ;;
         "03af9c2bf1173b6397e89955624300ae987f7ac0")
             patch_version="0.0.7"
+            qt_plugin_ver="5"
+            ;;
+        "b650989999a4c972a4b02e0f7ccb32b48195bfcf")
+            patch_version="0.0.7"
+            qt_plugin_ver="6"
+            ;;
+        "43bf0ef13afdc10c701ddcb4ca96993f19d919d1")
+            patch_version="0.0.7"
+            qt_plugin_ver="6"
             ;;
     esac
 }
@@ -62,20 +89,21 @@ find_version () {
 patch () {
     hash=$(sha1sum $APP_BINARY | cut -c1-40)
 
-    if [ -z "$patch_version" ]; then
-        find_version
-    fi
+    find_version
 
     if [ -z "$patch_version" ]; then
-        echo -e "${COLOR_ERROR}No suitable patch found...${NOCOLOR}"
+        echo -e "${COLOR_ERROR}No suitable patch found for '$hash'...${NOCOLOR}"
         exit 1
     fi
 
+    if [ -n "$patch_version_arg" ]; then
+        patch_version=$patch_version_arg
+    fi
 
     echo -e "${COLOR_SUCCESS}Trying to download and install patch: '$patch_version'${NOCOLOR}"
 
     pass=$(sha256sum $APP_BINARY | cut -c1-64)
-    wget -O- $PATCH_URL/${patch_version}_$hash.patch | openssl aes-256-cbc -d -a -md sha512 -pbkdf2 -iter 1000000 -salt -pass pass:$pass | tar --overwrite -xjC $CACHE_DIR
+    $WGET -O- $PATCH_URL/${patch_version}_$hash.patch | openssl aes-256-cbc -d -a -md sha512 -pbkdf2 -iter 1000000 -salt -pass pass:$pass | tar --overwrite -xjC $CACHE_DIR
     mkdir -p /etc/systemd/system/remarkable-fail.service.d
     cat << EOF > /etc/systemd/system/remarkable-fail.service.d/override-onfailure.conf
 [Service]
@@ -128,7 +156,12 @@ install_stylus () {
     resp=$?
     set -e
     if [ "$resp" -eq "0" ]; then
-        wget "https://github.com/ddvk/remarkable-stylus/releases/download/0.0.3/libqevdevlamyplugin.so" -O /usr/lib/plugins/generic/libqevdevlamyplugin.so
+        upgrade_wget
+
+        $WGET \
+            "https://github.com/mb1986/remarkable-stylus/releases/download/qt${qt_plugin_ver}/libqevdevlamyplugin.so.${qt_plugin_ver}" \
+            -O /usr/lib/plugins/generic/libqevdevlamyplugin.so
+
         mkdir -p /etc/systemd/system/xochitl.service.d
         cat << EOF > /etc/systemd/system/xochitl.service.d/evdevlamy.conf
 [Service]
@@ -140,12 +173,41 @@ EOF
 }
 
 
+upgrade_wget () {
+    wget_path=/home/root/.local/share/rm-hacks/wget
+    wget_remote=http://toltec-dev.org/thirdparty/bin/wget-v1.21.1-1
+    wget_checksum=c258140f059d16d24503c62c1fdf747ca843fe4ba8fcd464a6e6bda8c3bbb6b5
+
+    if [ -f "$wget_path" ] && ! sha256sum -c <(echo "$wget_checksum  $wget_path") > /dev/null 2>&1; then
+        rm "$wget_path"
+    fi
+
+    if ! [ -f "$wget_path" ]; then
+        echo "Fetching secure wget..."
+        # Download and compare to hash
+        mkdir -p "$(dirname "$wget_path")"
+        if ! wget -q "$wget_remote" --output-document "$wget_path"; then
+            echo "${COLOR_ERROR}Error: Could not fetch wget, make sure you have a stable Wi-Fi connection${NOCOLOR}"
+            exit 1
+        fi
+    fi
+
+    if ! sha256sum -c <(echo "$wget_checksum  $wget_path") > /dev/null 2>&1; then
+        echo "${COLOR_ERROR}Error: Invalid checksum for the local wget binary${NOCOLOR}"
+        exit 1
+    fi
+
+    chmod 755 "$wget_path"
+    WGET="$wget_path"
+}
+
+
 set_timezone () {
     echo -ne "${COLOR_USER}Your current timezone is: "
     timedatectl | grep "Time zone" | xargs | cut -c12-
     echo -ne "${NOCOLOR}"
     set +e
-    ask "Would you like to set proper timezone"
+    ask "Would you like to set different timezone"
     resp=$?
     set -e
     if [ "$resp" -eq "0" ]; then
@@ -183,7 +245,7 @@ echo ""
 
 if [[ "$1" = "patch" && -n "$2" || -z "$1" ]]; then
 
-    patch_version=$2
+    patch_version_arg=$2
     patch
     echo -e "${COLOR_SUCCESS}The patch '$patch_version' installed successfully (hopefully)!${NOCOLOR}"
 
