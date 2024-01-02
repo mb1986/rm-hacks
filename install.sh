@@ -17,6 +17,7 @@ WGET="wget"
 uninstall () {
     rm -rf ${CACHE_DIR}*
 
+    rm -f /etc/systemd/system/xochitl.service.d/qmlfileops.conf
     rm -f /etc/systemd/system/xochitl.service.d/evdevlamy.conf
     if [ -z "$(ls -A /etc/systemd/system/xochitl.service.d)" ]; then
         rmdir /etc/systemd/system/xochitl.service.d
@@ -70,11 +71,11 @@ find_version () {
             qt_plugin_ver="5"
             ;;
         "b650989999a4c972a4b02e0f7ccb32b48195bfcf")
-            patch_version="0.0.7"
+            patch_version="0.0.8"
             qt_plugin_ver="6"
             ;;
         "43bf0ef13afdc10c701ddcb4ca96993f19d919d1")
-            patch_version="0.0.7"
+            patch_version="0.0.8"
             qt_plugin_ver="6"
             ;;
     esac
@@ -99,6 +100,14 @@ patch () {
 
     pass=$(sha256sum $APP_BINARY | cut -c1-64)
     $WGET -O- $PATCH_URL/${patch_version}_$hash.patch | openssl aes-256-cbc -d -a -md sha512 -pbkdf2 -iter 1000000 -salt -pass pass:$pass | tar --overwrite -xjC $CACHE_DIR
+
+    mkdir -p /etc/systemd/system/xochitl.service.d
+    cat << EOF > /etc/systemd/system/xochitl.service.d/qmlfileops.conf
+[Service]
+Environment="QML_XHR_ALLOW_FILE_READ=1"
+Environment="QML_XHR_ALLOW_FILE_WRITE=1"
+EOF
+
     mkdir -p /etc/systemd/system/remarkable-fail.service.d
     cat << EOF > /etc/systemd/system/remarkable-fail.service.d/override-onfailure.conf
 [Service]

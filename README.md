@@ -59,6 +59,7 @@ sh -c "$(wget https://raw.githubusercontent.com/mb1986/rm-hacks/main/install.sh 
 
 | Version |     3.9.3.1986   |    3.8.3.1976    |    3.8.2.1965    |    3.7.0.1930    |    3.6.1.1894    |    3.3.2.1666    |
 |  :---:  |       :---:      |       :---:      |       :---:      |       :---:      |       :---:      |       :---:      |
+|**0.0.8**|:white_check_mark:|        :x:       |        :x:       |        :x:       |        :x:       |        :x:       |
 |**0.0.7**|:white_check_mark:|:white_check_mark:|:white_check_mark:|        :x:       |        :x:       |     :warning:    |
 |**0.0.6**|        :x:       |        :x:       |:white_check_mark:|        :x:       |        :x:       |        :x:       |
 |**0.0.5**|        :x:       |        :x:       |:white_check_mark:|:white_check_mark:|        :x:       |        :x:       |
@@ -69,6 +70,37 @@ sh -c "$(wget https://raw.githubusercontent.com/mb1986/rm-hacks/main/install.sh 
 
 If you're still using a device with version 2.x, you might prefer using
 [ddvk's Binary Patches](https://github.com/ddvk/remarkable-hacks).
+
+### Version 0.0.8
+
+This patch includes all the hacks from the previous one, along with the following:
+
+#### New features:
+
+- Bookmarks feature
+  - Tap in the top corner opposite the toolbar to toggle a bookmark for the current page.
+  - Long press in the top corner opposite the toolbar to create a named bookmark or to change the name of an existing one.
+  - New toolbar bookmarks button showing all bookmarks in the currently open document.
+  - Long press the bookmarks toolbar button to toggle a bookmark for the current page.
+  - Long press the bookmark grid item from the bookmarks menu to rename the bookmark.
+  - New configuration section for bookmarks in the settings.
+- Compressed list for documents navigation.
+- Page numbers at the bottom of document pages are now hidden.
+- Expanded the area for the 'swipe up to sleep' gesture.
+- Toolbar WiFi icon is now hidden when the WiFi connection is disabled.
+- The toolbar battery icon changes to a lightning icon when the device is charging.
+- Improved behavior of the table of contents and page overview toolbar buttons.
+- Tags are now shown in alphabetical order in the Menu/Tags view.
+- Document-level toggle to disable the straight lines feature.
+- The hacks version is also displayed in the hacks configuration view header.
+
+#### Bug fixes:
+
+- Page numbers toolbar button is now properly aligned in left-handed mode.
+
+#### Known issues:
+
+- The bookmarks toolbar button does not fit in the landscape mode.
 
 ### Version 0.0.7
 
