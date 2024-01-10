@@ -298,7 +298,7 @@ else
     echo -e "${COLOR_WARNING}Please restart the xochitl application, or your device to see effects...${NOCOLOR}"
 fi
 # TODO - add support for different launchers
-if systemctl --quiet is-enabled update-engine.service 2> /dev/null; then
+if systemctl --quiet is-enabled update-engine.service 2> /dev/null || systemctl --quiet is-active update-engine.service 2> /dev/null; then
     if ask "Would you like to turn off automatic update?"; then
         systemctl disable --now update-engine.service
     fi
