@@ -42,7 +42,7 @@ For your convenience, we've provided an automated installation script.
 4. If prompted restart your device.
 
 ```shell
-sh -c "$(wget https://raw.githubusercontent.com/mb1986/rm-hacks/main/install.sh -O-)"
+bash -c "$(wget https://raw.githubusercontent.com/mb1986/rm-hacks/main/install.sh -O-)"
 ```
 
 ### Uninstallation
@@ -52,13 +52,14 @@ please follow the same sequence as for installation,
 but use the command below in step 2.
 
 ```shell
-sh -c "$(wget https://raw.githubusercontent.com/mb1986/rm-hacks/main/install.sh -O-)" _ uninstall
+bash -c "$(wget https://raw.githubusercontent.com/mb1986/rm-hacks/main/install.sh -O-)" _ uninstall
 ```
 
 ## Patches
 
 | Version |     3.9.3.1986   |    3.8.3.1976    |    3.8.2.1965    |    3.7.0.1930    |    3.6.1.1894    |    3.3.2.1666    |
 |  :---:  |       :---:      |       :---:      |       :---:      |       :---:      |       :---:      |       :---:      |
+|**0.0.9**|:white_check_mark:|        :x:       |        :x:       |        :x:       |        :x:       |        :x:       |
 |**0.0.8**|:white_check_mark:|        :x:       |        :x:       |        :x:       |        :x:       |        :x:       |
 |**0.0.7**|:white_check_mark:|:white_check_mark:|:white_check_mark:|        :x:       |        :x:       |     :warning:    |
 |**0.0.6**|        :x:       |        :x:       |:white_check_mark:|        :x:       |        :x:       |        :x:       |
@@ -70,6 +71,43 @@ sh -c "$(wget https://raw.githubusercontent.com/mb1986/rm-hacks/main/install.sh 
 
 If you're still using a device with version 2.x, you might prefer using
 [ddvk's Binary Patches](https://github.com/ddvk/remarkable-hacks).
+
+### Version 0.0.9
+
+This patch includes all the hacks from the previous one, along with the following:
+
+#### New features:
+
+- Add button at the top of documents list to trigger screen orientation change (closes #95).
+- Remove the need to confirm by tapping the button after swiping right to add a new page (closes #108).
+- Remove the last empty page when navigating to the previous one.
+- Long press on the toolbar tags button to jump straight into Menu/Tags view (closes #129).
+- Add colors abbreviations to the color icon (near the brush icon) (closes #71).
+- Persist tags selection for filtering in Menu/Tags view (closes #129).
+- Double tap the document:
+  - in the middle to remove current and empty page,
+  - on the left-hand side (up to about 3cm from the edge) to add a new empty page before the current one,
+  - on the right-hand side (up to about 3cm from the edge) to add a new empty page after the current one.
+- Decrease the size of both the brush icon and toolbar width to 75% of their original sizes (closes #88).
+- Add configuration options for various click and press behaviors of the stylus button (closes #66).
+- Add a quicktools bar to store shortcut to tools. Swipe up to show / hide. double tap to remove a tool or to move it.
+- Add a setting to hide the document toggle for toolbar (closes #138)
+- Add a setting to hide the toolbar header (the round toggle to fullscreen)
+
+#### Bug fixes:
+
+- Fix wrong margins in compressed documents list view when large font is selected (closes #145).
+- Fix writing experience in the corner where bookmark button/icon is located (closes #132).
+- Fixed issue with keyboard appearing when a PDF is opened after a restart (see #179).
+- Fix foldouts too wide in toolbar compressed width (see #156).
+- Fix Tags in the compressed list overlap the document names (see #157).
+- Remove orphaned bookmarks when pages has been (re)moved (closes #218).
+
+#### Other changes:
+
+- Move the bookmark rename input into the header at the top of the screen (see #127).
+- Move the bookmarks toolbar button between the tags and layers buttons (see #127).
+- Fix native rM bug hiding drawings when going to light sleep (closes #116).
 
 ### Version 0.0.8
 

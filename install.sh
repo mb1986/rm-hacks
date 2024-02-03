@@ -76,11 +76,11 @@ find_version () {
             qt_plugin_ver="5"
             ;;
         "b650989999a4c972a4b02e0f7ccb32b48195bfcf")
-            patch_version="0.0.8"
+            patch_version="0.0.9"
             qt_plugin_ver="6"
             ;;
         "43bf0ef13afdc10c701ddcb4ca96993f19d919d1")
-            patch_version="0.0.8"
+            patch_version="0.0.9"
             qt_plugin_ver="6"
             ;;
     esac
@@ -104,7 +104,7 @@ patch () {
     echo -e "${COLOR_SUCCESS}Trying to download and install patch: '$patch_version'${NOCOLOR}"
 
     pass=$(sha256sum $APP_BINARY | cut -c1-64)
-    $WGET -O- $PATCH_URL/${patch_version}_$hash.patch | openssl aes-256-cbc -d -a -md sha512 -pbkdf2 -iter 1000000 -salt -pass pass:$pass | tar --overwrite -xjC $CACHE_DIR
+    $WGET -cO- $PATCH_URL/${patch_version}_$hash.patch | openssl aes-256-cbc -d -a -md sha512 -pbkdf2 -iter 1000000 -salt -pass pass:$pass | tar --overwrite -xjC $CACHE_DIR
 
     mkdir -p /etc/systemd/system/xochitl.service.d
     cat << EOF > /etc/systemd/system/xochitl.service.d/qmlfileops.conf
@@ -169,7 +169,7 @@ install_stylus () {
 
         $WGET \
             "https://github.com/mb1986/remarkable-stylus/releases/download/qt${qt_plugin_ver}/libqevdevlamyplugin.so.${qt_plugin_ver}" \
-            -O /usr/lib/plugins/generic/libqevdevlamyplugin.so
+            -cO /usr/lib/plugins/generic/libqevdevlamyplugin.so
 
         mkdir -p /etc/systemd/system/xochitl.service.d
         cat << EOF > /etc/systemd/system/xochitl.service.d/evdevlamy.conf
@@ -195,7 +195,7 @@ upgrade_wget () {
         echo "Fetching secure wget..."
         # Download and compare to hash
         mkdir -p "$(dirname "$wget_path")"
-        if ! wget -q "$wget_remote" --output-document "$wget_path"; then
+        if ! wget -cq "$wget_remote" --output-document "$wget_path"; then
             echo "${COLOR_ERROR}Error: Could not fetch wget, make sure you have a stable Wi-Fi connection${NOCOLOR}"
             exit 1
         fi
