@@ -83,6 +83,14 @@ find_version () {
             patch_version="0.0.9"
             qt_plugin_ver="6"
             ;;
+        "345202d07527976fd0a3bce4e9d663abb8b66258")
+            patch_version="0.0.9"
+            qt_plugin_ver="6"
+            ;;
+        "7bd8d866052c2e6a04fe8e42e736d61828029809")
+            patch_version="0.0.9"
+            qt_plugin_ver="6"
+            ;;
     esac
 }
 
