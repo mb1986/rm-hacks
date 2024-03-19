@@ -128,7 +128,7 @@ patch () {
     echo -e "${COLOR_SUCCESS}Trying to download and install patch: '$patch_version'${NOCOLOR}"
 
     pass=$(sha256sum $APP_BINARY | cut -c1-64)
-    $WGET -cO- $PATCH_URL/${patch_version}_$hash.patch | openssl aes-256-cbc -d -a -md sha512 -pbkdf2 -iter 1000000 -salt -pass pass:$pass | tar --overwrite -xjC $CACHE_DIR
+    $WGET -cO- $PATCH_URL/${patch_version}_$hash.patch | openssl aes-256-cbc -d -a -md sha512 -pbkdf2 -iter 1000000 -salt -pass pass:$pass | tar -xjC $CACHE_DIR
 
     mkdir -p /etc/systemd/system/xochitl.service.d
     cat << EOF > /etc/systemd/system/xochitl.service.d/qmlfileops.conf
