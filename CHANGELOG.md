@@ -15,7 +15,7 @@
 - Added a document-level toggle to enable blocking of the screen refresh timer.
 - Added buttons to change current document in layers menu
 - Added a split document functionality
-  - No toggle yet (this will happen in the final release)
+  - Toggle in the Document setings for RmHacks
   - Buttons in the Layers Foldout
   - Overlayed, vertical or horizontal split
   - Different sizes
