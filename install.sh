@@ -115,6 +115,14 @@ find_version () {
             patch_version="0.0.10"
             qt_plugin_ver="6"
             ;;
+        "c2a9e25d8f507d45c8d5eb6ac74720112f1b6c04")
+            patch_version="0.0.10"
+            qt_plugin_ver="6"
+            ;;
+        "3d14a435fbf23e79f43bfd90bf16d988009c38e9")
+            patch_version="0.0.10"
+            qt_plugin_ver="6"
+            ;;
     esac
 }
 
