@@ -286,6 +286,26 @@ set_timezone () {
     fi
 }
 
+is_active () {
+    systemctl --quiet is-active "$1" 2> /dev/null
+}
+
+is_enabled () {
+    systemctl --quiet is-enabled update-engine.service 2> /dev/null
+}
+is_active_or_enabled () {
+    is_active "$1" || is_enabled "$1"
+}
+
+disable_unit () {
+    if is_active "$1"; then
+        systemctl stop "$1"
+    fi
+    if is_enabled "$1"; then
+        systemctl disable "$1"
+    fi
+}
+
 
 echo ""
 echo -e "${COLOR_USER} rM Hacks Installer ${NOCOLOR}"
@@ -338,9 +358,12 @@ else
     echo -e "${COLOR_WARNING}Please restart the xochitl application, or your device to see effects...${NOCOLOR}"
 fi
 # TODO - add support for different launchers
-if systemctl --quiet is-enabled update-engine.service 2> /dev/null || systemctl --quiet is-active update-engine.service 2> /dev/null; then
+if is_active_or_enabled update-engine.service || is_active_or_enabled swupdate.service || is_active_or_enabled swupdate.socket ||  is_active_or_enabled swupdate-progress.service; then
     if ask "Would you like to turn off automatic update?"; then
-        systemctl disable --now update-engine.service
+        disable_unit update-engine.service 
+        disable_unit swupdate.service
+        disable_unit swupdate.socket
+        disable_unit swupdate-progress.service
     fi
 fi
 echo "Have fun, until next time, bye!"
