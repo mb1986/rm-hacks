@@ -60,18 +60,18 @@ bash -c "$(wget https://raw.githubusercontent.com/mb1986/rm-hacks/main/install.s
 The wonderful and up-to-date documentation, detailing configuration and how the hacks work, is managed thanks to [@knox-dawson](https://github.com/knox-dawson) and can be found in the [Wiki](https://github.com/mb1986/rm-hacks/wiki).
 The full list of features and bug fixes for each release is available in the [CHANGELOG.md](CHANGELOG.md).
 
-| Version  |      3.11.2.5    |    3.10.2.2063   |     3.9.5.2026   |     3.9.4.2018   |     3.9.3.1986   |    3.8.3.1976    |    3.8.2.1965    |    3.7.0.1930    |    3.6.1.1894    |    3.3.2.1666    |
-|  :---:   |       :---:      |       :---:      |       :---:      |       :---:      |       :---:      |       :---:      |       :---:      |       :---:      |       :---:      |       :---:      |
-|**0.0.10**|:white_check_mark:|        :x:       |        :x:       |        :x:       |        :x:       |        :x:       |        :x:       |        :x:       |        :x:       |        :x:       |
-|**0.0.9** |:white_check_mark:|:white_check_mark:|:white_check_mark:|:white_check_mark:|:white_check_mark:|        :x:       |        :x:       |        :x:       |        :x:       |        :x:       |
-|**0.0.8** |        :x:       |        :x:       |        :x:       |        :x:       |:white_check_mark:|        :x:       |        :x:       |        :x:       |        :x:       |        :x:       |
-|**0.0.7** |        :x:       |        :x:       |        :x:       |        :x:       |:white_check_mark:|:white_check_mark:|:white_check_mark:|        :x:       |        :x:       |     :warning:    |
-|**0.0.6** |        :x:       |        :x:       |        :x:       |        :x:       |        :x:       |        :x:       |:white_check_mark:|        :x:       |        :x:       |        :x:       |
-|**0.0.5** |        :x:       |        :x:       |        :x:       |        :x:       |        :x:       |        :x:       |:white_check_mark:|:white_check_mark:|        :x:       |        :x:       |
-|**0.0.4** |        :x:       |        :x:       |        :x:       |        :x:       |        :x:       |        :x:       |        :x:       |:white_check_mark:|        :x:       |        :x:       |
-|**0.0.3** |        :x:       |        :x:       |        :x:       |        :x:       |        :x:       |        :x:       |        :x:       |:white_check_mark:|        :x:       |        :x:       |
-|**0.0.2** |        :x:       |        :x:       |        :x:       |        :x:       |        :x:       |        :x:       |        :x:       |:white_check_mark:|        :x:       |        :x:       |
-|**0.0.1** |        :x:       |        :x:       |        :x:       |        :x:       |        :x:       |        :x:       |        :x:       |:white_check_mark:|:white_check_mark:|        :x:       |
+| Version  |      3.11.3.3    |      3.11.2.5    |    3.10.2.2063   |     3.9.5.2026   |     3.9.4.2018   |     3.9.3.1986   |    3.8.3.1976    |    3.8.2.1965    |    3.7.0.1930    |    3.6.1.1894    |    3.3.2.1666    |
+|  :---:   |       :---:      |       :---:      |       :---:      |       :---:      |       :---:      |       :---:      |       :---:      |       :---:      |       :---:      |       :---:      |       :---:      |
+|**0.0.10**|:white_check_mark:|:white_check_mark:|        :x:       |        :x:       |        :x:       |        :x:       |        :x:       |        :x:       |        :x:       |        :x:       |        :x:       |
+|**0.0.9** |        :x:       |:white_check_mark:|:white_check_mark:|:white_check_mark:|:white_check_mark:|:white_check_mark:|        :x:       |        :x:       |        :x:       |        :x:       |        :x:       |
+|**0.0.8** |        :x:       |        :x:       |        :x:       |        :x:       |        :x:       |:white_check_mark:|        :x:       |        :x:       |        :x:       |        :x:       |        :x:       |
+|**0.0.7** |        :x:       |        :x:       |        :x:       |        :x:       |        :x:       |:white_check_mark:|:white_check_mark:|:white_check_mark:|        :x:       |        :x:       |     :warning:    |
+|**0.0.6** |        :x:       |        :x:       |        :x:       |        :x:       |        :x:       |        :x:       |        :x:       |:white_check_mark:|        :x:       |        :x:       |        :x:       |
+|**0.0.5** |        :x:       |        :x:       |        :x:       |        :x:       |        :x:       |        :x:       |        :x:       |:white_check_mark:|:white_check_mark:|        :x:       |        :x:       |
+|**0.0.4** |        :x:       |        :x:       |        :x:       |        :x:       |        :x:       |        :x:       |        :x:       |        :x:       |:white_check_mark:|        :x:       |        :x:       |
+|**0.0.3** |        :x:       |        :x:       |        :x:       |        :x:       |        :x:       |        :x:       |        :x:       |        :x:       |:white_check_mark:|        :x:       |        :x:       |
+|**0.0.2** |        :x:       |        :x:       |        :x:       |        :x:       |        :x:       |        :x:       |        :x:       |        :x:       |:white_check_mark:|        :x:       |        :x:       |
+|**0.0.1** |        :x:       |        :x:       |        :x:       |        :x:       |        :x:       |        :x:       |        :x:       |        :x:       |:white_check_mark:|:white_check_mark:|        :x:       |
 
 If you're still using a device with version 2.x, you might prefer using
 [ddvk's Binary Patches](https://github.com/ddvk/remarkable-hacks).
